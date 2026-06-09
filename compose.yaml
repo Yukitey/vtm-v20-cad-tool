@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=vtm_v20_cad_db'
+      - 'POSTGRES_PASSWORD=cad_admin_13'
+      - 'POSTGRES_USER=cad_admin'
+    ports:
+      - '5435:5432'
