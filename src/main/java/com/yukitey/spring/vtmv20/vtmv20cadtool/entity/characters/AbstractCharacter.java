@@ -1,14 +1,18 @@
 package com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters;
 
-import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.archetypes.*;
-import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.characteristics.*;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.abilities.Abilities;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.archetypes.BaseArchetype;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.characteristics.Characteristics;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.concepts.BaseConcept;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.point.SimplePointValue;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.virtue.ConscienceOrConvictionChoice;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.virtue.SelfControlOrInstinctChoice;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.players.Player;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
 
 /**
  * Абстрактный базовый класс для всех существ Мира Тьмы (V20).
@@ -22,18 +26,17 @@ import java.util.Map;
 public abstract class AbstractCharacter {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /** Имя персонажа */
     @Column(nullable = false)
     private String name;
 
-    /** Имя игрока */
-    private String player;
-
-    /** Название хроники */
-    private String chronicle;
+    /** Игрок */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
+    private Player player;
 
     /** Натура: истинная личность персонажа */
     @Enumerated(EnumType.STRING)
@@ -41,32 +44,37 @@ public abstract class AbstractCharacter {
 
     /** Маска: образ, который персонаж являет миру */
     @Enumerated(EnumType.STRING)
-    private BaseArchetype demeanor;
+    private BaseArchetype archetype;
 
     /** Амплуа: социальная концепция персонажа */
     @Enumerated(EnumType.STRING)
     private BaseConcept concept;
 
-    /** Базовые характеристики */
+    /** Характеристики */
     @Embedded
     private Characteristics characteristics = new Characteristics();
 
-    // --- Virtues (Добродетели) ---
+    /** Способности */
+    @Embedded
+    private Abilities abilities = new Abilities();
+
     /**
      * Совесть (Conscience) или Решимость (Conviction).
      * Зависит от этического кодекса или Пути персонажа.
      */
-    private Integer conscienceOrConviction;
+    private ConscienceOrConvictionChoice conscienceOrConviction;
 
     /**
      * Самообладание (Self-Control) или Инстинкты (Instinct).
      * Определяет способность сдерживать Зверя.
      */
-    private Integer selfControlOrInstinct;
+    private SelfControlOrInstinctChoice selfControlOrInstinct;
 
     /** Храбрость (Courage) */
-    private Integer courage;
+    @AttributeOverride(name = "dots", column = @Column(name = "courage_dots"))
+    private SimplePointValue courage;
 
     /** Сила воли (Willpower) */
-    private Integer willpower;
+    @AttributeOverride(name = "dots", column = @Column(name = "willpower_dots"))
+    private SimplePointValue willpower;
 }

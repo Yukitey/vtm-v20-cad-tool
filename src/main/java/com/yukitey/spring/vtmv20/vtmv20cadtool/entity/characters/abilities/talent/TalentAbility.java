@@ -81,11 +81,11 @@ public enum TalentAbility implements EnumAbility {
     /** Локализованное название таланта для отображения в листе персонажа. */
     private final String displayName;
 
+    /** Классы, содержащие возможные специализации для данного таланта. */
+    private final Collection<Class<? extends Specialization>> specializationClasses;
+
     @SafeVarargs
     TalentAbility(String displayName, Class<? extends Specialization>... specializationClass) {
        this(displayName, List.of(specializationClass));
     }
-
-    /** Классы, содержащие возможные специализации для данного таланта. */
-    private final Collection<Class<? extends Specialization>> specializationClasses;
 }

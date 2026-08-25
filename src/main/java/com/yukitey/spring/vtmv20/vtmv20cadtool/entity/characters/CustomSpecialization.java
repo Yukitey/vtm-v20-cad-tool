@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 public non-sealed abstract class CustomSpecialization implements Specialization {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(nullable = false)

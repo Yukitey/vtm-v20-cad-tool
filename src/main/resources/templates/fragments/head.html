@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="title" type="String"*/-->
+<!--/*@thymesVar id="description" type="String"*/-->
+<head th:fragment="head(title, description)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta th:if="${description != null}" name="description" th:content="${description}">
+    <title th:text="${title}"></title>
+    <link rel="shortcut icon" th:href="@{/images/favicon.svg}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/page-layout.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/dot-selector.css}">
+    <script type="text/javascript" th:src="@{/scripts/index.js}" defer></script>
+    <script type="text/javascript" th:src="@{/scripts/dot-selector.js}" defer></script>
+</head>
+</html>

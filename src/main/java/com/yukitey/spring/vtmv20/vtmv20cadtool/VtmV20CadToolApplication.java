@@ -9,5 +9,4 @@ public class VtmV20CadToolApplication {
     public static void main(String[] args) {
         SpringApplication.run(VtmV20CadToolApplication.class, args);
     }
-
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/page :: page(${title}, ${description}, ~{::content})}">
+<!--/*@thymesVar id="title" type="String"*/-->
+<!--/*@thymesVar id="description" type="String"*/-->
+<body>
+<div th:fragment="content" class="page-body-content">
+    <aside>
+
+    </aside>
+    <main>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

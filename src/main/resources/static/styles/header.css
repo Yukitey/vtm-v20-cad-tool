@@ -1,0 +1,16 @@
+.header {
+    background: url(../images/back.png);
+    background-size: 400px;
+    height: 100px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.header-logo {
+    padding: 10px;
+}

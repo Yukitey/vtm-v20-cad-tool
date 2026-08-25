@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="dotSelector(fieldName, currentValue, maxValue, label)"
+     th:with="max = ${maxValue != null ? maxValue : 5}">
+    <div class="dot-group">
+        <div th:each="i : ${#numbers.sequence(1, max)}"
+             th:with="safeId=|dot_${#strings.replace(#strings.replace(fieldName, '[', '_'), ']', '_')}_${i}|">
+            <input type="radio"
+                   th:id="${safeId}"
+                   th:name="${fieldName}"
+                   th:value="${i}"
+                   th:checked="${i == currentValue}"
+                   class="dot-radio"/>
+            <label th:for="${safeId}"
+                   th:classappend="${i <= (currentValue ?: 0) ? 'filled' : 'empty'}"></label>
+        </div>
+        <span th:if="${label != null}" class="dot-label" th:text="${label}"></span>
+    </div>
+</div>
+</html>

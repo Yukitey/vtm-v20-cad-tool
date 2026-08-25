@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+    th:fragment="page(title, description, content)">
+<!--/*@thymesVar id="title" type="String"*/-->
+<!--/*@thymesVar id="description" type="String"*/-->
+<head th:replace="~{fragments/head :: head(${title}, ${description})}"></head>
+<body>
+<div class="page">
+    <header th:replace="~{fragments/header :: header}"></header>
+    <div class="page-body">
+       <th:block th:replace="${content}"></th:block>
+    </div>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
+</body>
+</html>

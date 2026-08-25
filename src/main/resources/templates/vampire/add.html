@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/page :: page(${title}, ${description}, ~{::content})}">
+<!--/*@thymesVar id="title" type="String"*/-->
+<!--/*@thymesVar id="description" type="String"*/-->
+<body>
+<div th:fragment="content" class="page-body-content">
+    <main>
+        <section class="page-body-content-section">
+            <link rel="stylesheet" type="text/css" th:href="@{/styles/сharacter.css}">
+            <div class="section-content">
+                <div class="section-content-header">Лист персонажа</div>
+                <div class="section-content-body">
+                    <form th:action="@{/vampires/add}" th:object="${vampireCharacter}" method="post" class="character">
+                        <div class="character-attribute-section">
+                            <div class="character-attribute-section-header">
+                                <h3 class="character-attribute-section-header-title">Характеристики</h3>
+                            </div>
+                            <div class="character-attribute-section-body">
+                                <div class="attribute-block">
+                                    <h4 class="attribute-block-title">Физические</h4>
+                                    <div th:each="entry : ${vampireCharacter.physicalAttributes}" class="attribute-item">
+                                        <label th:text="${entry.key.getDisplayName()}"></label>
+                                        <select th:field="*{physicalAttributes[__${entry.key}__].specialization}">
+                                            <option th:value="${null}"></option>
+                                            <option th:each="spec : ${entry.key.getAvailableSpecializations()}"
+                                                    th:value="${spec.name()}"
+                                                    th:text="${spec.getDisplayName()}"
+                                                    th:selected="${spec.name() == entry.value.specialization}"></option>
+                                        </select>
+                                        <div th:replace="~{fragments/dot-selector :: dotSelector(fieldName='physicalAttributes[' + ${entry.key} + '].dots', currentValue=${entry.value.dots}, maxValue=5, label=null)}"></div>
+                                    </div>
+                                </div>
+                                <div class="attribute-block">
+                                    <h4 class="attribute-block-title">Социальные</h4>
+                                    <div th:each="entry : ${vampireCharacter.socialAttributes}" class="attribute-item">
+                                        <label th:text="${entry.key.getDisplayName()}"></label>
+                                        <select th:field="*{socialAttributes[__${entry.key}__].specialization}">
+                                            <option th:value="${null}"></option>
+                                            <option th:each="spec : ${entry.key.getAvailableSpecializations()}"
+                                                    th:value="${spec.name()}"
+                                                    th:text="${spec.getDisplayName()}"
+                                                    th:selected="${spec.name() == entry.value.specialization}"></option>
+                                        </select>
+                                        <div th:replace="~{fragments/dot-selector :: dotSelector(fieldName='socialAttributes[' + ${entry.key} + '].dots', currentValue=${entry.value.dots}, maxValue=5, label=null)}"></div>
+                                    </div>
+                                </div>
+                                <div class="attribute-block">
+                                    <h4 class="attribute-block-title">Ментальные</h4>
+                                    <div th:each="entry : ${vampireCharacter.mentalAttributes}" class="attribute-item">
+                                        <label th:text="${entry.key.getDisplayName()}"></label>
+                                        <select th:field="*{mentalAttributes[__${entry.key}__].specialization}">
+                                            <option th:value="${null}"></option>
+                                            <option th:each="spec : ${entry.key.getAvailableSpecializations()}"
+                                                    th:value="${spec.name()}"
+                                                    th:text="${spec.getDisplayName()}"
+                                                    th:selected="${spec.name() == entry.value.specialization}"></option>
+                                        </select>
+                                        <div th:replace="~{fragments/dot-selector :: dotSelector(fieldName='mentalAttributes[' + ${entry.key} + '].dots', currentValue=${entry.value.dots}, maxValue=5, label=null)}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

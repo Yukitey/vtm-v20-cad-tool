@@ -15,17 +15,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SpecializedPointValue extends PointValue {
+public class SpecializedPointValue implements PointValue {
+
+    /** Количество закрашенных точек */
+    @Column(name = "dots")
+    private Integer dots = 0;
 
     @Column(name = "specialization")
     @Convert(converter = SpecializationConverter.class)
     private Specialization specialization;
-
-    public SpecializedPointValue(Integer dots, Specialization spec) {
-        super(dots);
-        // Логика V20: специализация активна только на 4+ точках
-        if (dots != null && dots >= 4 && spec != null) {
-            this.specialization = spec;
-        }
-    }
 }
