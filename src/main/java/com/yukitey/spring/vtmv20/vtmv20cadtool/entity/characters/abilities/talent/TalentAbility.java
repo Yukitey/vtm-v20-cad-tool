@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -87,5 +88,10 @@ public enum TalentAbility implements EnumAbility {
     @SafeVarargs
     TalentAbility(String displayName, Class<? extends Specialization>... specializationClass) {
        this(displayName, List.of(specializationClass));
+    }
+
+    @Override
+    public Collection<Class<? extends Specialization>> getSpecializationClasses() {
+        return specializationClasses;
     }
 }

@@ -2,16 +2,19 @@
 
 }
 
-.character-attribute-section {
+.character-characteristics-section,
+.character-abilities-section {
     display: flex;
     flex-direction: column;
 }
 
-.character-attribute-section-header {
+.character-characteristics-section-header,
+.character-abilities-section-header {
     align-content: center;
 }
 
-.character-attribute-section-header-title {
+.character-characteristics-section-header-title,
+.character-abilities-section-header-title {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -19,7 +22,8 @@
     gap: 40px;
 }
 
-.character-attribute-section-header-title:before {
+.character-characteristics-section-header-title:before,
+.character-abilities-section-header-title:before {
     content: '';
     width: auto;
     height: 5px;
@@ -27,7 +31,8 @@
     flex: 1;
 }
 
-.character-attribute-section-header-title:after {
+.character-characteristics-section-header-title:after,
+.character-abilities-section-header-title:after {
     content: '';
     width: auto;
     height: 5px;
@@ -35,36 +40,42 @@
     flex: 1;
 }
 
-.character-attribute-section-body {
+.character-characteristics-section-body,
+.character-abilities-section-body {
     display: flex;
     flex-direction: row;
     gap: 50px;
 }
 
-.attribute-block {
+.characteristics-block {
+.abilities-block,
     display: flex;
     flex-direction: column;
     gap: 15px;
     flex: 1;
 }
 
-.attribute-block-title {
+.characteristics-block-title,
+.abilities-block-title {
     text-align: center;
     text-transform: uppercase;
 }
 
-.attribute-item {
+.characteristics-item,
+.abilities-item {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
 }
 
-.attribute-item > label {
+.characteristics-item > label,
+.abilities-item > label {
     text-transform: uppercase;
 }
 
-.attribute-item > select {
+.characteristics-item > select,
+.abilities-item > select {
     -webkit-appearance: none;
     appearance: none;
     background: transparent;

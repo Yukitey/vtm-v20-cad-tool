@@ -1,8 +1,12 @@
 package com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.abilities;
 
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.Specialization;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Абстрактная база для создания уникальных способностей персонажа (Хобби, Профессиональные навыки и т.д.).
@@ -54,4 +58,10 @@ public abstract non-sealed class CustomAbility implements Ability {
     }
 
     public abstract String prefix();
+
+    @Transient
+    @Override
+    public Collection<Class<? extends Specialization>> getSpecializationClasses() {
+        return Collections.emptyList();
+    }
 }

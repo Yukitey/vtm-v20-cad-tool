@@ -2,6 +2,9 @@ package com.yukitey.spring.vtmv20.vtmv20cadtool.vampire;
 
 import com.yukitey.spring.vtmv20.vtmv20cadtool.common.dto.SpecializedPointValueDto;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.VampireCharacter;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.abilities.knowledge.KnowledgeAbility;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.abilities.skill.SkillAbility;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.abilities.talent.TalentAbility;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.characteristics.mental.MentalCharacteristic;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.characteristics.physical.PhysicalCharacteristic;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.characteristics.social.SocialCharacteristic;
@@ -56,6 +59,29 @@ public class VampireCharacterService {
                         ))
         );
 
+        template.setTalents(
+                Arrays.stream(TalentAbility.values())
+                        .collect(Collectors.toMap(
+                                Function.identity(),
+                                ability -> new SpecializedPointValueDto(0, null)
+                        ))
+        );
+
+        template.setSkills(
+                Arrays.stream(SkillAbility.values())
+                        .collect(Collectors.toMap(
+                                Function.identity(),
+                                ability -> new SpecializedPointValueDto(0, null)
+                        ))
+        );
+
+        template.setKnowledges(
+                Arrays.stream(KnowledgeAbility.values())
+                        .collect(Collectors.toMap(
+                                Function.identity(),
+                                ability -> new SpecializedPointValueDto(0, null)
+                        ))
+        );
 
         return template;
     }
