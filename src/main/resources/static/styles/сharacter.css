@@ -1,20 +1,26 @@
 .character {
-
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
+.character-common-section,
 .character-characteristics-section,
-.character-abilities-section {
+.character-abilities-section,
+.character-advantages-section {
     display: flex;
     flex-direction: column;
 }
 
 .character-characteristics-section-header,
-.character-abilities-section-header {
+.character-abilities-section-header,
+.character-advantages-section-header {
     align-content: center;
 }
 
 .character-characteristics-section-header-title,
-.character-abilities-section-header-title {
+.character-abilities-section-header-title,
+.character-advantages-section-header-title {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -23,7 +29,8 @@
 }
 
 .character-characteristics-section-header-title:before,
-.character-abilities-section-header-title:before {
+.character-abilities-section-header-title:before,
+.character-advantages-section-header-title:before {
     content: '';
     width: auto;
     height: 5px;
@@ -32,7 +39,8 @@
 }
 
 .character-characteristics-section-header-title:after,
-.character-abilities-section-header-title:after {
+.character-abilities-section-header-title:after,
+.character-advantages-section-header-title:after {
     content: '';
     width: auto;
     height: 5px;
@@ -40,40 +48,49 @@
     flex: 1;
 }
 
+.character-common-section-body,
 .character-characteristics-section-body,
-.character-abilities-section-body {
+.character-abilities-section-body,
+.character-advantages-section-body {
     display: flex;
     flex-direction: row;
     gap: 50px;
 }
 
-.characteristics-block {
+.common-block,
+.characteristics-block,
 .abilities-block,
+.advantages-block {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     flex: 1;
+    gap: 15px;
 }
 
 .characteristics-block-title,
-.abilities-block-title {
+.abilities-block-title,
+.advantages-block-title {
     text-align: center;
     text-transform: uppercase;
 }
 
+.common-item,
 .characteristics-item,
 .abilities-item {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex: 1;
     gap: 15px;
 }
 
+.common-item > label,
 .characteristics-item > label,
 .abilities-item > label {
     text-transform: uppercase;
 }
 
+.common-item > select,
 .characteristics-item > select,
 .abilities-item > select {
     -webkit-appearance: none;
@@ -83,5 +100,12 @@
     border-bottom: 2px solid black;
     border-radius: 0;
     -webkit-border-radius: 0;
+    flex: 1;
+}
+
+.common-item > input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid black;
     flex: 1;
 }

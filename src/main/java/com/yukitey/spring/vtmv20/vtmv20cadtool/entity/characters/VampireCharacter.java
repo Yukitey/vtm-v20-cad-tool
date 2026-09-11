@@ -6,6 +6,9 @@ import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.clans.VentrueCl
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.enlightenment.paths.EnlightenmentPath;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.enlightenment.paths.EnlightenmentPathFactory;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.enlightenment.paths.HumanityEnlightenmentPath;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.health.HealthState;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.health.strategy.VampireWoundStrategy;
+import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.health.strategy.WoundStrategy;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.point.BackgroundPointValue;
 import com.yukitey.spring.vtmv20.vtmv20cadtool.entity.characters.point.SimplePointValue;
 import jakarta.persistence.*;
@@ -37,6 +40,8 @@ import java.util.Map;
 @Getter
 @Setter
 public class VampireCharacter extends AbstractCharacter {
+
+    private static final WoundStrategy STRATEGY = new VampireWoundStrategy();
 
     // === Клан и Поколение ===
 
@@ -119,4 +124,10 @@ public class VampireCharacter extends AbstractCharacter {
      */
     @Column(name = "blood_pool")
     private Integer bloodPool;
+
+
+    @Override
+    public WoundStrategy getWoundStrategy() {
+        return STRATEGY;
+    }
 }
